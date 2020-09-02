@@ -1,0 +1,2 @@
+# GameOfLife
+Jetbrains Academy project
