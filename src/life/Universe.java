@@ -8,6 +8,22 @@ public class Universe {
     final int size;
 
     /**
+     * Construct a new random Universe state without specifying seed
+     * @param size the size of the Universe (n * n)
+     */
+    public Universe(int size) {
+        this.size = size;
+        universe = new boolean[size][size];
+        Random rand = new Random();
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                universe[i][j] = rand.nextBoolean();
+            }
+        }
+    }
+
+    /**
      * Construct a new random Universe state
      * @param size the size of the Universe (n * n)
      * @param seed the seed use to generate random pattern
@@ -22,15 +38,6 @@ public class Universe {
                 universe[i][j] = rand.nextBoolean();
             }
         }
-    }
-
-    /**
-     * Construct an empty Universe without randomness
-     * @param size the size of the Universe (n * n)
-     */
-    public Universe(int size) {
-        this.size = size;
-        universe = new boolean[size][size];
     }
 
     /**
@@ -66,6 +73,19 @@ public class Universe {
 
     public boolean isAlive(int row, int col) {
         return universe[row][col];
+    }
+
+    public int countAlive() {
+        int cnt = 0;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (isAlive(i, j)) {
+                    cnt++;
+                }
+            }
+        }
+
+        return cnt;
     }
 
 

@@ -1,22 +1,43 @@
 package life;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int size = scanner.nextInt();
-        int seed = scanner.nextInt();
-        int numOfGen = scanner.nextInt();
+//        int seed = scanner.nextInt();
+        ArrayList<Generation> genList = new ArrayList<>();
 
-        Generation[] gens = new Generation[numOfGen + 1];
-        Generation init = new Generation(new Universe(size, seed));
-        gens[0] = init;
 
-        for (int i = 1; i <= numOfGen; i++) {
-            gens[i] = gens[i - 1].nextGeneration();
+        Generation init = new Generation(new Universe(size));
+        genList.add(init);
+        System.out.printf("Generation: #%d\n", 1);
+        genList.get(0).printGeneration();
+        for (int i = 1; i < 1000; i++) {
+            try {
+                Thread.sleep(500);
+                clearScreen();
+            } catch (InterruptedException e) {}
+            
+/*            try {
+                Thread.sleep(500);
+                if (System.getProperty("os.name").contains("Windows"))
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                else
+                    Runtime.getRuntime().exec("clear");
+            } catch (IOException | InterruptedException ex) {}*/
+
+            genList.add(genList.get(i - 1).nextGeneration());
+            System.out.printf("Generation: #%d\n", i + 1);
+            genList.get(i).printGeneration();
         }
 
-        Generation last = gens[gens.length - 1];
-        last.printGeneration();
+    }
+
+    private static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
