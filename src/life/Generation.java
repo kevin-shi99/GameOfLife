@@ -5,15 +5,19 @@ public class Generation {
     private final Universe current;
     private Universe nextCache;
     Generation next;
+    private int numOfAlive;
 
 
     public Generation(Universe currentState) {
         current = new Universe(currentState.universe);
         nextCache = null;
+
+        countAlive();
         getNextGen();
     }
 
     public void printGeneration() {
+        System.out.printf("Alive: %d\n", numOfAlive);
         current.printUniverse();
         System.out.print('\n');
     }
@@ -23,6 +27,14 @@ public class Generation {
             next = new Generation(nextCache);
         }
         return next;
+    }
+
+    public int getNumOfAlive() {
+        return numOfAlive;
+    }
+
+    private void countAlive() {
+        numOfAlive = current.countAlive();
     }
 
     private void getNextGen() {

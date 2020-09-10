@@ -15,6 +15,7 @@ public class Main {
         genList.add(init);
         System.out.printf("Generation: #%d\n", 1);
         genList.get(0).printGeneration();
+
         for (int i = 1; i < 10; i++) {
             try {
                 Thread.sleep(500);
@@ -33,8 +34,8 @@ public class Main {
 
     }
 
-/*    private static void clearScreen() {
+    private static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
-    }*/
+    }
 }
