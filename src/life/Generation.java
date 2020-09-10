@@ -29,7 +29,12 @@ public class Generation {
         return next;
     }
 
+    public Universe getCurrent() {
+        return new Universe(current.universe);
+    }
+
     public int getNumOfAlive() {
+        countAlive();
         return numOfAlive;
     }
 

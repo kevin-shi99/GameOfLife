@@ -8,7 +8,6 @@ public class Universe {
     final int size;
 
     /**
-<<<<<<< HEAD
      * Construct a new random Universe state
      * @param size the size of the Universe (n * n)
      * @param seed the seed use to generate random pattern
